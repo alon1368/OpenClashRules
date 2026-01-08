@@ -1,0 +1,88 @@
+# ==========================================================
+# 基础端口与运行模式
+# ==========================================================
+mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7893
+
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+ipv6: false
+udp: true
+
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# ==========================================================
+# DNS（Fake-IP 增强，适配 TUN / Mixed）
+# ==========================================================
+dns:
+  enable: true
+  listen: 0.0.0.0:7874
+  ipv6: false
+
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '*.localdomain'
+    - 'localhost'
+    - 'time.*'
+    - 'ntp.*'
+    - 'time.windows.com'
+    - 'time.apple.com'
+    - 'time.cloudflare.com'
+    - 'router.asus.com'
+    - 'routerlogin.net'
+
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://dns.cloudflare.com/dns-query
+
+  fallback:
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+# ==========================================================
+# TUN 模块（全接管，核心关键）
+# ==========================================================
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: false
+  dns-hijack:
+    - any:53
+
+# ==========================================================
+# GEO 数据库声明（与 OpenClash 数据库页面对齐）
+# ==========================================================
+geodata-mode: true
+geox-url:
+  geoip: https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/latest/download/geosite.dat
+
+# ==========================================================
+# 实验性特性（安全开启）
+# ==========================================================
+experimental:
+  sniff-tls-sni: true
+  sniff-http-host: true
