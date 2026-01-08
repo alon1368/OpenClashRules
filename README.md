@@ -11,3 +11,18 @@ Warning
 6、本项目保留随时补充或修改免责声明的权利，凡使用本项目内容的个人或组织，均视为已接受此声明。
 
 >OpenClash_Rules
+<details>
+
+<summary>Tips for collapsed sections</summary>
+
+### You can add a header
+
+You can add text within a collapsed section.
+
+You can add an image or a code block, too.
+
+```ruby
+   puts "Hello World"
+```
+
+</details>
