@@ -33,6 +33,4 @@ function test() {
 }
 ```
 
-<sub> 
-   123456
-</sub>
+
