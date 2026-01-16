@@ -1,5 +1,6 @@
 ## 分类
-
+转载自：https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash
+感谢大佬付出！
 
 |📵Advertising|  |  |  |  |
 | ---- | ---- | ---- | ---- | ---- |
